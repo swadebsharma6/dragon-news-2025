@@ -1,0 +1,29 @@
+
+import { Link } from 'react-router';
+
+const Navbar = () => {
+      return (
+            <div className="navbar bg-base-200 shadow-sm my-5">
+  <div className="navbar-start">
+    
+  </div>
+  <div className="navbar-center  lg:flex">
+    <ul className="menu menu-horizontal px-1">
+      <li><Link to={'/'}>Home</Link></li>
+      <li><Link to={'/about'}>About</Link></li>
+      <li><Link to={'/career'}>Career</Link></li>
+    </ul>
+  </div>
+  <div className="navbar-end">
+    <div className="avatar mr-5">
+    <div className="w-12 ring-success ring-offset-base-100 rounded-full">
+      <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
+    </div>
+  </div>
+    <button className="btn btn-primary">Login</button>
+  </div>
+</div>
+      );
+};
+
+export default Navbar;
