@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
 
 
 const Login = () => {
+  const [error, setError] = useState("");
     const {logInUser} = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -20,7 +21,7 @@ const Login = () => {
       navigate(location.state || '/')
     })
     .catch(error =>{
-      console.log(error.message)
+      setError(error.message)
     })
    
   }
@@ -37,7 +38,10 @@ const Login = () => {
 
             <label className="label">Password</label>
             <input type="password" name="password" className="input" placeholder="Password" required/>
-            
+            {
+              error && <p className="text-center py-4 text-secondary font-semibold">{error}</p>  
+            }
+
             <button className="btn btn-neutral mt-4">Login</button>
             <p className="font-bold text-center py-4">Don't Have An Account ? <Link className="text-secondary" to='/auth/register'>Register</Link></p>
           </form>

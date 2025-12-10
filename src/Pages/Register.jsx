@@ -1,21 +1,40 @@
-import { useContext } from "react";
-import { Link } from "react-router";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
+  const [nameErr, setNameErr] = useState("");
+  const navigate = useNavigate();
 
-  const {createUser} = useContext(AuthContext);
+  const {createUser, updateUser,  setUser} = useContext(AuthContext);
 
   const handleRegister = e =>{
     e.preventDefault();
     const name = e.target.name.value;
+    if(name.length < 5){
+      setNameErr('Name should be five character');
+      return;
+    }
+    else{
+      setNameErr("");
+    }
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     //create user
     createUser(email, password)
     .then(result =>{
-      console.log('create', result.user)
+      updateUser({displayName: name, photoURL: photo})
+      .then(()=>{
+         setUser(result.user);
+         alert('User Created & U successfully');
+         navigate('/auth/login');
+         
+      })
+      .catch(error =>{
+        console.log(error.message)
+      })
+      
     })
     .catch(error =>{
       console.log(error.message)
@@ -30,6 +49,9 @@ const Register = () => {
           <form onSubmit={handleRegister} className="fieldset">
             <label className="label">Name</label>
             <input type="text" name="name" className="input" placeholder="Name" />
+            {
+              nameErr && <p className="text-xs text-error">{nameErr}</p>
+            }
             
             <label className="label">Photo Url</label>
             <input type="text" name="photo" className="input" placeholder="Photo" />

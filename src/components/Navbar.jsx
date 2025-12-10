@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <div className="avatar mr-5">
           <div className="w-12 ring-success ring-offset-base-100 rounded-full">
-            <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />
+          {user ?   <img src={user?.photoURL} /> :   <img src="https://img.daisyui.com/images/profile/demo/batperson@192.webp" />}
           </div>
         </div>
         {user ? (
