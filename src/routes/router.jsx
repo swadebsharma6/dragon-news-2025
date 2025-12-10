@@ -6,6 +6,7 @@ import AuthLayOut from "../layOuts/AuthLayOut";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import NewsDetails from "../Pages/NewsDetails";
+import PrivetRoute from "./PrivetRoute";
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
       },
       {
             path: '/news-details/:id',
-            element: <NewsDetails/>,
+            element: <PrivetRoute><NewsDetails/>,</PrivetRoute>
       },
       {
             path: '/*',
