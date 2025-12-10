@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import CategoryNews from "./CategoryNews";
+
 
 
 const Home = () => {
