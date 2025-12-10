@@ -1,10 +1,12 @@
 import { FaEye, FaStar } from "react-icons/fa";
 import { format } from "date-fns";
 import { CiBookmark, CiShare2 } from "react-icons/ci";
+import { Link } from "react-router";
 
 
 const NewsCard = ({ news }) => {
   const {
+    id,
     title,
     rating,
     total_view,
@@ -65,9 +67,11 @@ const NewsCard = ({ news }) => {
         {/* Details */}
         <p className="text-sm mt-3 text-gray-600">
           {details.slice(0, 200)}...
+          <Link to={`/news-details/${id}`}>
           <span className="text-orange-400 font-semibold cursor-pointer hover: underline">
             Read More
           </span>
+          </Link>
         </p>
 
         {/* Tags */}
